@@ -1,0 +1,124 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Rentas</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Agregar el script de jsPDF en el head -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Sistema de Gestión de Rentas</h1>
+    
+    <div class="leyenda">
+      <div class="leyenda-item">
+        <div class="color-muestra pagado"></div>
+        <span>Pagado</span>
+      </div>
+      <div class="leyenda-item">
+        <div class="color-muestra extension"></div>
+        <span>Extensión de Pago</span>
+      </div>
+      <div class="leyenda-item">
+        <div class="color-muestra atrasado"></div>
+        <span>Atrasado</span>
+      </div>
+      <div class="leyenda-item">
+        <div class="color-muestra libre"></div>
+        <span>Libre</span>
+      </div>
+      <div class="leyenda-item">
+        <div class="color-muestra parcial"></div>
+        <span>Pago Parcial</span>
+      </div>
+      <div class="leyenda-item">
+        <div class="color-muestra proximo"></div>
+        <span>Próximo a Pagar</span>
+      </div>
+    </div>
+
+    <div class="pisos">
+      <div class="piso">
+        <h2>Planta Baja</h2>
+        <div class="habitaciones" id="pb"></div>
+      </div>
+
+      <div class="piso">
+        <h2>Piso 1</h2>
+        <div class="habitaciones" id="p1"></div>
+      </div>
+
+      <div class="piso">
+        <h2>Piso 1 - Sección C</h2>
+        <div class="habitaciones" id="p1c"></div>
+      </div>
+
+      <div class="piso">
+        <h2>Piso 2 - Sección A</h2>
+        <div class="habitaciones" id="p2a"></div>
+      </div>
+
+      <div class="piso">
+        <h2>Piso 2 - Sección B</h2>
+        <div class="habitaciones" id="p2b"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="export-section">
+      <button onclick="exportarDatos('json')" class="export-btn">
+        Exportar JSON
+      </button>
+      <button onclick="exportarDatos('pdf')" class="export-btn">
+        Exportar PDF
+      </button>
+      <button onclick="actualizarCambios()" class="export-btn update-btn">
+        Actualizar Cambios
+      </button>
+    </div>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h2>Editar Habitación <span id="habitacion-numero"></span></h2>
+      <div class="form-group">
+        <label for="estado">Estado:</label>
+        <select id="estado">
+          <option value="libre">Libre</option>
+          <option value="pagado">Pagado</option>
+          <option value="extension">Extensión de Pago</option>
+          <option value="atrasado">Atrasado</option>
+          <option value="parcial">Pago Parcial</option>
+          <option value="proximo">Próximo a Pagar</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="precio">Precio Total:</label>
+        <input type="number" id="precio" min="0">
+      </div>
+      <div class="form-group">
+        <label for="fecha-pago">Fecha de Pago:</label>
+        <input type="date" id="fecha-pago">
+      </div>
+      <div id="pago-parcial-section" style="display: none;">
+        <div class="form-group">
+          <label for="pagado">Cantidad Pagada:</label>
+          <input type="number" id="pagado" min="0">
+        </div>
+        <div class="form-group">
+          <label for="restante">Cantidad Restante:</label>
+          <input type="number" id="restante" disabled>
+        </div>
+      </div>
+      <div class="modal-buttons">
+        <button onclick="guardarCambios()">Guardar</button>
+        <button onclick="cerrarModal()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

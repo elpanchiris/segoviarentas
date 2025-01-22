@@ -1,0 +1,253 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.pisos {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.piso {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h2 {
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.habitaciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.habitacion {
+  position: relative;
+  min-height: 120px;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.habitacion:hover {
+  transform: scale(1.05);
+}
+
+.libre { background-color: #ccc; }
+.pagado { background-color: #90EE90; }
+.extension { background-color: #FFD700; }
+.atrasado { background-color: #FF6B6B; }
+.parcial { background-color: #FFC0CB; }
+.proximo { background-color: #87CEEB; }
+
+.fecha-pago {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #444;
+  margin-top: 5px;
+  padding: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* Leyenda de colores */
+.leyenda {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-muestra {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.color-muestra.libre { background-color: #ccc; }
+.color-muestra.pagado { background-color: #90EE90; }
+.color-muestra.extension { background-color: #FFD700; }
+.color-muestra.atrasado { background-color: #FF6B6B; }
+.color-muestra.parcial { background-color: #FFC0CB; }
+.color-muestra.proximo { background-color: #87CEEB; }
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  position: relative;
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 8px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:last-child {
+  background-color: #6c757d;
+}
+
+button:last-child:hover {
+  background-color: #545b62;
+}
+
+/* Botón de actualizar */
+.update-btn {
+  background-color: #17a2b8 !important;
+}
+
+.update-btn:hover {
+  background-color: #138496 !important;
+}
+
+/* Export section styles */
+.export-section {
+  margin: 20px 0;
+  text-align: center;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.export-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease;
+}
+
+.export-btn:nth-child(2) {
+  background-color: #dc3545;
+}
+
+.export-btn:hover {
+  background-color: #218838;
+}
+
+.export-btn:nth-child(2):hover {
+  background-color: #c82333;
+}
+
+/* Toast notification */
+.toast {
+  visibility: hidden;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 16px;
+  border-radius: 4px;
+  text-align: center;
+  z-index: 1000;
+  min-width: 250px;
+}
+
+.toast.show {
+  visibility: visible;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
